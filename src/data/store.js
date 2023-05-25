@@ -132,5 +132,6 @@ export const store = reactive({
         "wo": "sn",
         "xh": "za",
         "zu": "za"
-    }
+    },
+    posterForCardApiURL: "https://image.tmdb.org/t/p/w185"
 })

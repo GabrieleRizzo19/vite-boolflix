@@ -22,9 +22,12 @@
 
 <template>
 
+
   <searchBar />
 
   <filmsContainer />
+
+
 
 </template>
 

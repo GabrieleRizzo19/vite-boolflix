@@ -13,6 +13,12 @@
         methods: {
             getLanguageFlagClass(language){
                 return "fi fi-" + this.store.iso639to3166[language]
+            },
+            getPosterImage(item){
+                return this.store.posterForCardApiURL + item.poster_path;
+            },
+            getVotefrom1to5(vote){
+                return Math.ceil(vote / 2);
             }
         }
     }
@@ -28,13 +34,15 @@
 
             <h3>FILM</h3>
 
+            <img :src="getPosterImage(movie)" alt="">
+
             TITOLO: {{ movie.title }}
             <br>
             TITOLO ORIGINALE: {{ movie.original_title }}
             <br>
             LINGUA ORIGINALE: <span :class="getLanguageFlagClass(movie.original_language)"></span>
             <br>
-            VOTO: {{ movie.vote_average }}
+            VOTO: <span v-for="n in getVotefrom1to5(movie.vote_average)"><i class="fa-solid fa-star" style="color: #d8db00;"></i></span>
             <br>
 
         </div>
@@ -44,13 +52,15 @@
 
             <h3>SERIE</h3>
 
+            <img :src="getPosterImage(serie)" alt="">
+
             TITOLO: {{ serie.name }}
             <br>
             TITOLO ORIGINALE: {{ serie.original_name }}
             <br>
             LINGUA ORIGINALE: <span :class="getLanguageFlagClass(serie.original_language)"></span>
             <br>
-            VOTO: {{ serie.vote_average }}
+            VOTO: {{ getVotefrom1to5(serie.vote_average) }}
             <br>
 
         </div>
@@ -70,7 +80,7 @@
         overflow-y: auto;
 
         .movie-card, .series-card{
-            width: calc(25% - 2rem);
+            width: 200px;
             margin: 1rem;
             padding: 0.5rem;
         }
