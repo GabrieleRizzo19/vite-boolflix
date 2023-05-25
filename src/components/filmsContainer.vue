@@ -10,6 +10,11 @@
                 store
             }
         },
+        methods: {
+            getLanguageFlagClass(language){
+                return "fi fi-" + this.store.iso639to3166[language]
+            }
+        },
         mounted() {
             axios.get(this.store.popularMovieApiURL)
             .then(result => {
@@ -26,6 +31,8 @@
 <template>
 
     <div class="movie-container">
+
+        <span class="fi fi-en"></span>
         
         <div class="movie-card" v-for="movie in store.movieArray">
 
@@ -33,7 +40,7 @@
             <br>
             TITOLO ORIGINALE: {{ movie.original_title }}
             <br>
-            LINGUA ORIGINALE: {{ movie.original_language }}
+            LINGUA ORIGINALE: <span :class="getLanguageFlagClass(movie.original_language)"></span>
             <br>
             VOTO: {{ movie.vote_average }}
             <br>
