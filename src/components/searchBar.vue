@@ -12,20 +12,43 @@
             }
         },
         methods: {
+            getFilmOrSeries(apiURL, type){
+
+                let storeArray;
+                if(type === "movie"){
+                    storeArray = "movieArray";
+                }else{
+                    storeArray = "seriesArray";
+                }
+
+                this.store[storeArray] = [];
+
+                axios.get(apiURL)
+                .then(result => {
+                    console.log(`Risultati ${type}`, result.data.results);
+                    this.store[storeArray] = result.data.results;
+                }).catch(err => {
+                    console.log(err);
+                })
+
+            },
             searchFilm() {
-            const apiURL = this.store.movieSearchApiURL + this.searchBarValue;
-            this.store.movieArray = [];
+                const apiURL = this.store.movieSearchApiURL + this.searchBarValue;
 
-            axios.get(apiURL)
-            .then(result => {
+                this.getFilmOrSeries(apiURL, "movie");
+            },
+            searchSeries() {
+                const apiURL = this.store.seriesSearchApiURL + this.searchBarValue;
 
-                console.log("Risultati search: ", result.data.results);
+                this.getFilmOrSeries(apiURL, "series");
+            }
+        },
+        mounted(){
 
-                this.store.movieArray = result.data.results
-            }).catch(err=> {
-                console.log(err);
-            })
-        }
+            this.getFilmOrSeries(this.store.popularMovieApiURL, "movie");
+
+            this.getFilmOrSeries(this.store.popularSeriesApiURL, "series");
+            
         }
     }
 
@@ -35,9 +58,9 @@
 
     <div class="searchbar">
 
-        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup.enter="searchFilm">
+        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup.enter="searchFilm(); searchSeries()">
 
-        <button @click="searchFilm">CERCA</button>
+        <button @click="searchFilm(); searchSeries()">CERCA</button>
 
     </div>
 
