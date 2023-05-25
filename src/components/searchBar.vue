@@ -19,9 +19,9 @@
             axios.get(apiURL)
             .then(result => {
 
-                for (let i = 0; i < 20; i++) {
-                    this.store.movieArray.push(result.data.results[i])
-                }
+                console.log("Risultati search: ", result.data.results);
+
+                this.store.movieArray = result.data.results
             }).catch(err=> {
                 console.log(err);
             })
@@ -35,7 +35,7 @@
 
     <div class="searchbar">
 
-        <input type="text" v-model="searchBarValue" placeholder="Cerca film">
+        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup.enter="searchFilm">
 
         <button @click="searchFilm">CERCA</button>
 

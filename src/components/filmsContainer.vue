@@ -13,13 +13,11 @@
         mounted() {
             axios.get(this.store.popularMovieApiURL)
             .then(result => {
-
-                for(let i=0; i < 20; i++){
-                    this.store.movieArray.push(result.data.results[i])
-                }
+                
+                this.store.movieArray = result.data.results
             })
 
-            console.log("Movie in store: ", this.store.movieArray);
+            // console.log("Movie in store: ", this.store.movieArray);
         }
     }
 
@@ -56,6 +54,7 @@
         background-color: aqua;
         height: calc(100vh - 150px);
         @include flex(row, center, center, wrap);
+        overflow-y: auto;
 
         .movie-card{
             background-color: antiquewhite;
