@@ -27,6 +27,11 @@
 
 <template>
 
+
+    <div id="loading" v-if="store.loading">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+    </div>
+
     <div class="card-container">
         
         <!-- MOVIES CARD -->
@@ -42,7 +47,10 @@
             <br>
             LINGUA ORIGINALE: <span :class="getLanguageFlagClass(movie.original_language)"></span>
             <br>
-            VOTO: <span v-for="n in getVotefrom1to5(movie.vote_average)"><i class="fa-solid fa-star" style="color: #d8db00;"></i></span>
+            VOTO: 
+            <span v-for="n in getVotefrom1to5(movie.vote_average)">
+                <i class="fa-solid fa-star" style="color: #d8db00;"></i>
+            </span>
             <br>
 
         </div>
@@ -60,7 +68,10 @@
             <br>
             LINGUA ORIGINALE: <span :class="getLanguageFlagClass(serie.original_language)"></span>
             <br>
-            VOTO: {{ getVotefrom1to5(serie.vote_average) }}
+            VOTO: 
+            <span v-for="n in getVotefrom1to5(serie.vote_average)">
+                <i class="fa-solid fa-star" style="color: #d8db00;"></i>
+            </span>
             <br>
 
         </div>
@@ -73,6 +84,16 @@
 <style lang="scss" scoped>
 
     @use '../styles/partials/mixins' as *;
+
+    #loading{
+        position: absolute;
+        z-index: 10;
+        width: 100vw;
+        height: calc(100vh - 150px);
+        background-color: aqua;
+        @include flex(row, center, center, wrap);
+        font-size: 5rem;
+    }
     .card-container{
         background-color: aqua;
         height: calc(100vh - 150px);
@@ -86,11 +107,11 @@
         }
 
         .movie-card{
-            background-color: antiquewhite;
+            background-color: white;
         }
 
         .series-card{
-            background-color: green;
+            background-color: lightgray;
         }
     }
 

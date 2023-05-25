@@ -1,6 +1,7 @@
 import { reactive } from "vue";
 
 export const store = reactive({
+    loading: true,
     apiKey: "c2ec2eeb72c0803794e79e18b3213df3",
     popularMovieApiURL: "https://api.themoviedb.org/3/movie/popular?api_key=c2ec2eeb72c0803794e79e18b3213df3&language=it-IT",
     popularSeriesApiURL: "https://api.themoviedb.org/3/tv/popular?api_key=c2ec2eeb72c0803794e79e18b3213df3&language=it-IT",

@@ -31,6 +31,8 @@
                     console.log(err);
                 })
 
+                this.store.loading = false;
+
             },
             searchFilm() {
                 const apiURL = this.store.movieSearchApiURL + this.searchBarValue;
