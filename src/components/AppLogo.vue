@@ -10,7 +10,7 @@
 <template>
 
     <div class="logo-wrapper">
-        <h1>BOLLFLIX</h1>
+        <h1>BOOLFLIX</h1>
     </div>
 
 </template>

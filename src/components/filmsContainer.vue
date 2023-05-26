@@ -75,7 +75,7 @@
                         </span>
                     </div>
 
-                    <div>
+                    <div  v-if="movie.overview != ''">
                         <span class="card-property">TRAMA:</span>
                         {{ movie.overview }}
                     </div>
@@ -115,11 +115,16 @@
                         <span :class="getLanguageFlagClass(serie.original_language)"></span> 
                     </div>
 
-                    <div class="overview">
+                    <div>
                         <span class="card-property">VOTO:</span>  
                         <span v-for="n in getVotefrom1to5(serie.vote_average)">
                             <i class="fa-solid fa-star" style="color: #d8db00;"></i>
                         </span>
+                    </div>
+
+                    <div v-if="serie.overview != ''">
+                        <span class="card-property">TRAMA:</span>
+                        {{ serie.overview }}
                     </div>
 
                 </div>
@@ -198,7 +203,7 @@
                 word-wrap: break-word;
                 white-space: pre-wrap;
                 overflow: hidden;
-                
+
 
                 .card-property{
                     font-weight: bold;
