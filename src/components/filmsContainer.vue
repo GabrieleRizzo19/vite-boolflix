@@ -15,7 +15,12 @@
                 return "fi fi-" + this.store.iso639to3166[language]
             },
             getPosterImage(item){
-                return this.store.posterForCardApiURL + item.poster_path;
+
+                if(item.poster_path == null){
+                    return "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg";
+                }else{
+                    return this.store.posterForCardApiURL + item.poster_path;
+                }
             },
             getVotefrom1to5(vote){
                 return Math.ceil(vote / 2);
@@ -41,17 +46,18 @@
 
             <img :src="getPosterImage(movie)" alt="">
 
-            TITOLO: {{ movie.title }}
-            <br>
-            TITOLO ORIGINALE: {{ movie.original_title }}
-            <br>
-            LINGUA ORIGINALE: <span :class="getLanguageFlagClass(movie.original_language)"></span>
-            <br>
-            VOTO: 
-            <span v-for="n in getVotefrom1to5(movie.vote_average)">
-                <i class="fa-solid fa-star" style="color: #d8db00;"></i>
-            </span>
-            <br>
+            <div>TITOLO: {{ movie.title }}</div>
+
+            <div v-if="movie.title != movie.original_title">TITOLO ORIGINALE: {{ movie.original_title }}</div>
+
+            <div> LINGUA ORIGINALE: <span :class="getLanguageFlagClass(movie.original_language)"></span> </div>
+            
+            <div>
+                VOTO: 
+                <span v-for="n in getVotefrom1to5(movie.vote_average)">
+                    <i class="fa-solid fa-star" style="color: #d8db00;"></i>
+                </span>
+            </div>
 
         </div>
 
@@ -104,6 +110,10 @@
             width: 200px;
             margin: 1rem;
             padding: 0.5rem;
+
+            img{
+                width: 185px;
+            }
         }
 
         .movie-card{
