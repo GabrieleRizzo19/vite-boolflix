@@ -34,6 +34,10 @@
                 this.store.loading = false;
 
             },
+            search(){
+                this.searchFilm();
+                this.searchSeries();
+            },
             searchFilm() {
                 const apiURL = this.store.movieSearchApiURL + this.searchBarValue;
 
@@ -60,7 +64,7 @@
 
     <div class="searchbar">
 
-        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup="searchFilm(); searchSeries()">
+        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup="search">
 
     </div>
 
@@ -76,7 +80,12 @@
 
         input{
             width: 70%;
+            height: 2rem;
             margin-right: 1rem;
+            padding: 1rem;
+            border: 0;
+            border-radius: 0.5rem;
+
         }
     }
 

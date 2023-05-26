@@ -39,7 +39,6 @@
         background-color: #222;
     }
     .header-wrapper{
-        padding: 0 2rem;
         @include flex(row, space-between, center, wrap)
     }
 

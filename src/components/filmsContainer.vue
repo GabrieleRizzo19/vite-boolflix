@@ -44,26 +44,37 @@
         <div class="movie-container">
             
             <!-- MOVIES CARD -->
-            <div class="movie-card" v-for="movie in store.movieArray">
+            <div class="card" v-for="movie in store.movieArray">
 
 
                 <div class="img-wrapper">
                     <img :src="getPosterImage(movie)" alt="">
                 </div>
 
-                <div>TITOLO: {{ movie.title }}</div>
+                <div class="info">
 
-                <div v-if="movie.title != movie.original_title">
-                    TITOLO ORIGINALE: {{ movie.original_title }}
-                </div>
+                    <div> 
+                        <span class="card-property">TITOLO:</span>
+                        {{ movie.title }}
+                    </div>
 
-                <div> LINGUA ORIGINALE: <span :class="getLanguageFlagClass(movie.original_language)"></span> </div>
+                    <div v-if="movie.title != movie.original_title">
+                        <span class="card-property">TITOLO ORIGINALE:</span>   
+                        {{ movie.original_title }}
+                    </div>
+
+                    <div>
+                        <span class="card-property">LINGUA ORIGINALE:</span>  
+                        <span :class="getLanguageFlagClass(movie.original_language)"></span> 
+                    </div>
                 
-                <div>
-                    VOTO: 
-                    <span v-for="n in getVotefrom1to5(movie.vote_average)">
-                        <i class="fa-solid fa-star" style="color: #d8db00;"></i>
-                    </span>
+                    <div>
+                        <span class="card-property">VOTO:</span>  
+                        <span v-for="n in getVotefrom1to5(movie.vote_average)">
+                            <i class="fa-solid fa-star" style="color: #d8db00;"></i>
+                        </span>
+                    </div>
+
                 </div>
 
             </div>
@@ -75,28 +86,41 @@
         <div class="series-container">
 
             <!-- SERIES CARD -->
-            <div class="series-card" v-for="serie in store.seriesArray">
+            <div class="card" v-for="serie in store.seriesArray">
+
 
                 <div class="img-wrapper">
                     <img :src="getPosterImage(serie)" alt="">
                 </div>
 
-                <div>TITOLO: {{ serie.name }}</div>
+                <div class="info">
 
-                <div v-if="serie.name != serie.original_name">
-                    TITOLO ORIGINALE: {{ serie.original_name }}
-                </div>
+                    <div> 
+                        <span class="card-property">TITOLO:</span>
+                        {{ serie.name }}
+                    </div>
 
-                <div> LINGUA ORIGINALE: <span :class="getLanguageFlagClass(serie.original_language)"></span> </div>
-                
-                <div>
-                    VOTO: 
-                    <span v-for="n in getVotefrom1to5(serie.vote_average)">
-                        <i class="fa-solid fa-star" style="color: #d8db00;"></i>
-                    </span>
+                    <div v-if="serie.name != serie.original_name">
+                        <span class="card-property">TITOLO ORIGINALE:</span>   
+                        {{ serie.original_name }}
+                    </div>
+
+                    <div>
+                        <span class="card-property">LINGUA ORIGINALE:</span>  
+                        <span :class="getLanguageFlagClass(serie.original_language)"></span> 
+                    </div>
+
+                    <div>
+                        <span class="card-property">VOTO:</span>  
+                        <span v-for="n in getVotefrom1to5(serie.vote_average)">
+                            <i class="fa-solid fa-star" style="color: #d8db00;"></i>
+                        </span>
+                    </div>
+
                 </div>
 
             </div>
+            
 
         </div>
 
@@ -124,39 +148,59 @@
 
     .card-container{
         height: calc((100vh) - 166px);
+        color: white;
 
         .type-title{
-            color:  white;
             margin: 1rem auto;
         }
     }
     .movie-container, .series-container{
 
-        @include flex(row, space-between, auto, no-wrap);
+        display: flex;
         width: 100%;
         overflow-x: auto;
 
-        .movie-card, .series-card{
+        .card{
             width: 200px;
             margin: 1rem;
             padding: 0.5rem;
+            background-color: black;
+            border: 2px solid white;
+
+            &:hover{
+                width: 200px;
+                .img-wrapper{
+                    display: none;
+                }
+
+                .info{
+                    display: block;
+                }
+            }
 
             .img-wrapper{
-                min-height: 300px;
-                @include flex(row, center, center)
+                @include flex(row, center, center);
+                img{
+                    width: 185px;
+                }
             }
 
-            img{
-                width: 185px;
+            .info{
+                display: none;
+                width: 200px;
+                word-wrap: break-word;
+                white-space: pre-wrap;
+
+                .card-property{
+                    font-weight: bold;
+
+                    &::after{
+                        content: "\a";
+                        white-space: pre-wrap;
+                    }
+                }
             }
-        }
 
-        .movie-card{
-            background-color: white;
-        }
-
-        .series-card{
-            background-color: lightgray;
         }
     }
 
