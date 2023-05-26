@@ -1,15 +1,15 @@
 <script>
 
-  import searchBar from './components/searchBar.vue';
-  import filmsContainer from './components/filmsContainer.vue';
+  import AppHeader from './components/AppHeader.vue';
+  import AppMain from './components/AppMain.vue';
 
   import axios from 'axios';
   import { store } from './data/store';
 
   export default{
     components: {
-      searchBar,
-      filmsContainer
+      AppHeader,
+      AppMain
     },
     data(){
       return{
@@ -23,9 +23,9 @@
 <template>
 
   
-  <searchBar />
+  <AppHeader />
 
-  <filmsContainer />
+  <AppMain />
 
 
 

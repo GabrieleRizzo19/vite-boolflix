@@ -60,9 +60,7 @@
 
     <div class="searchbar">
 
-        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup.enter="searchFilm(); searchSeries()">
-
-        <button @click="searchFilm(); searchSeries()">CERCA</button>
+        <input type="text" v-model="searchBarValue" placeholder="Cerca film" @keyup="searchFilm(); searchSeries()">
 
     </div>
 
@@ -73,7 +71,6 @@
     @use '../styles/partials/_mixins' as *;
     .searchbar{
         height: 150px;
-        background-color: #222;
         color: white;
         @include flex(row, center, center, wrap);
 
