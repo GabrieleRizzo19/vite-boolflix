@@ -75,6 +75,11 @@
                         </span>
                     </div>
 
+                    <div>
+                        <span class="card-property">TRAMA:</span>
+                        {{ movie.overview }}
+                    </div>
+
                 </div>
 
             </div>
@@ -110,7 +115,7 @@
                         <span :class="getLanguageFlagClass(serie.original_language)"></span> 
                     </div>
 
-                    <div>
+                    <div class="overview">
                         <span class="card-property">VOTO:</span>  
                         <span v-for="n in getVotefrom1to5(serie.vote_average)">
                             <i class="fa-solid fa-star" style="color: #d8db00;"></i>
@@ -162,6 +167,7 @@
 
         .card{
             width: 200px;
+            height: 300px;
             margin: 1rem;
             padding: 0.5rem;
             background-color: black;
@@ -187,9 +193,12 @@
 
             .info{
                 display: none;
-                width: 200px;
+                width: 180px;
+                max-height: 100%;
                 word-wrap: break-word;
                 white-space: pre-wrap;
+                overflow: hidden;
+                
 
                 .card-property{
                     font-weight: bold;
@@ -198,6 +207,7 @@
                         content: "\a";
                         white-space: pre-wrap;
                     }
+
                 }
             }
 
